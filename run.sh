@@ -17,6 +17,10 @@ echo "[INFO] Using mqtt host: $MQTT_HOST"
 echo "[INFO] Using mqtt serverport: $MQTT_PORT"
 echo "[INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC"
 echo "[INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
+echo "------------------------------------------------------------------------------------"
+echo "Now connecing to mqtt server with the following command:"
+echo "mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > test.png"
+echo "waiting for a dotfile to arrive..."
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
 # LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
