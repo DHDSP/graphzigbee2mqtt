@@ -20,9 +20,10 @@ echo "[INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
 echo "------------------------------------------------------------------------------------"
 echo ""
 echo "Now connecing to mqtt server with the following command:"
-echo "mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > test.png"
+echo "mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > latest_network_scan.png"
 echo ""
 echo "waiting for a dotfile to arrive..."
+echo ""
 
 mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > latest_network_scan.png
 
