@@ -4,10 +4,15 @@ set -e
 CONFIG_PATH=/data/options.json
 #MARIADB_DATA=/data/databases
 
-echo "[INFO] Using Data $MQTT_USERNAME@$MQTT_HOST and topic $MQTTPATH_DOTFILE"
+MQTT_USERNAME=$(jq --raw-output "." $CONFIG_PATH)
+MQTT_HOST=$(jq --raw-output "." $CONFIG_PATH)
+MQTT_TOPIC=$(jq --raw-output "." $CONFIG_PATH)
+
+
+echo "[INFO] Using Data $MQTT_USERNAME@$MQTT_HOST and topic $MQTT_TOPIC"
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
-LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
+# LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
 # RIGHTS=$(jq --raw-output '.rights | length' $CONFIG_PATH)
 
 # Init mariadb
