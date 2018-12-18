@@ -12,11 +12,11 @@ MQTT_PORT=$(jq --raw-output ".mqtt_port" $CONFIG_PATH)
 
 
 echo "------------------------------------------------------------------------------------"
-echo "[INFO] Using mqtt username:\033[32m $MQTT_USERNAME\033[0m"
-echo "[INFO] Using mqtt host: $MQTT_HOST"
-echo "[INFO] Using mqtt serverport: $MQTT_PORT"
-echo "[INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC"
-echo "[INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
+echo "$(date -u) [INFO] Using mqtt username: $MQTT_USERNAME"
+echo "$(date -u) [INFO] Using mqtt host: $MQTT_HOST"
+echo "$(date -u) [INFO] Using mqtt serverport: $MQTT_PORT"
+echo "$(date -u) [INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC"
+echo "$(date -u) [INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
 echo "------------------------------------------------------------------------------------"
 echo ""
 
@@ -24,18 +24,16 @@ while true
 
 do
 
-echo "Now connecing to mqtt server with the following command:"
-echo "mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > latest_network_scan.png"
-echo ""
-echo "waiting for a dotfile to arrive..."
-echo ""
+echo "$(date -u) [INFO] Now connecing to mqtt server with the following command:"
+echo "$(date -u) [INFO] mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > latest_network_scan.png"
+echo "$(date -u) [INFO] waiting for a dotfile to arrive..."
 
 mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > latest_network_scan.png
 
-echo "received dotfile and generated .png"
+echo "$(date -u) [INFO] received dotfile and generated .png"
 
-echo "Now sending the .png with command:"
-echo "mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png"
+echo "$(date -u) [INFO] Now sending the .png with command:"
+echo "$(date -u) [INFO] mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png"
 
 mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png
 echo "------------------------------------------------------------------------------------"
