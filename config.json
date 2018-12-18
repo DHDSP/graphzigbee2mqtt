@@ -1,0 +1,21 @@
+{
+  "name": "graphzigbee2mqtt",
+  "version": "0.1",
+  "slug": "graphzigbee2mqtt",
+  "description": "Making a beautiful graph and sending it via MQTT to be used by Hassio",
+  "url": "https://notyetdecided.github.com",
+  "startup": "before",
+  "boot": "auto",
+  "options": {
+    "mqttpath_dotfile": "homeassistant",
+    "logins": [
+      {"mqtt_username": "hass", "mqtt_host": "%", "mqtt_password": "replacethispassword"}
+    ]
+  },
+  "schema": {
+    "mqttpath_dotfile": "str",
+    "logins": [
+        {"mqtt_username": "str", "mqtt_host": "str", "mqtt_password": "str"}
+    ]
+  }
+}
