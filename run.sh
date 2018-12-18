@@ -18,10 +18,8 @@ echo "$(date -u) [INFO] Using mqtt serverport: $MQTT_PORT"
 echo "$(date -u) [INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC"
 echo "$(date -u) [INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
 echo "------------------------------------------------------------------------------------"
-echo ""
 
 while true
-
 do
 
 echo "$(date -u) [INFO] Now connecing to mqtt server with the following command:"
