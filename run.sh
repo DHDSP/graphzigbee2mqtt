@@ -19,6 +19,11 @@ echo "[INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC
 echo "[INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
 echo "------------------------------------------------------------------------------------"
 echo ""
+
+while true
+
+do
+
 echo "Now connecing to mqtt server with the following command:"
 echo "mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > latest_network_scan.png"
 echo ""
@@ -33,6 +38,9 @@ echo "Now sending the .png with command:"
 echo "mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png"
 
 mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png
+
+
+done
 
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
