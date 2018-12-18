@@ -15,7 +15,8 @@ MQTT_PORT=$(jq --raw-output ".mqtt_port" $CONFIG_PATH)
 echo "[INFO] Using mqtt username: $MQTT_USERNAME"
 echo "[INFO] Using mqtt host: $MQTT_HOST"
 echo "[INFO] Using mqtt serverport: $MQTT_PORT"
-echo "[INFO] Using mqtt topic for receiving the graphviz dotfile $MQTT_DOTTOPIC"
+echo "[INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC"
+echo "[INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
 # LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
