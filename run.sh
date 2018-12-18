@@ -7,11 +7,15 @@ CONFIG_PATH=/data/options.json
 MQTT_USERNAME=$(jq --raw-output ".mqtt_username" $CONFIG_PATH)
 MQTT_PASSWORD=$(jq --raw-output ".mqtt_password" $CONFIG_PATH)
 MQTT_HOST=$(jq --raw-output ".mqtt_host" $CONFIG_PATH)
-MQTT_TOPIC=$(jq --raw-output ".mqtt_topic" $CONFIG_PATH)
+MQTT_DOTTOPIC=$(jq --raw-output ".mqtt_dottopic" $CONFIG_PATH)
+MQTT_IMAGETOPIC=$(jq --raw-output ".mqtt_imagetopic" $CONFIG_PATH)
 MQTT_PORT=$(jq --raw-output ".mqtt_port" $CONFIG_PATH)
 
 
-echo "[INFO] Using Data $MQTT_USERNAME@$MQTT_HOST using port $MQTT_PORT and topic $MQTT_TOPIC"
+echo "[INFO] Using mqtt username: $MQTT_USERNAME"
+echo "[INFO] Using mqtt host: $MQTT_HOST"
+echo "[INFO] Using mqtt serverport: $MQTT_PORT"
+echo "[INFO] Using mqtt topic for receiving the graphviz dotfile $MQTT_DOTTOPIC"
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
 # LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)

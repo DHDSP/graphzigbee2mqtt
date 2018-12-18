@@ -7,14 +7,16 @@
   "startup": "before",
   "boot": "auto",
   "options": {
-    "mqtt_topic": "your_mqtt_topic",
+    "mqtt_dottopic": "your_mqtt_topic_where_the_zigbee2mqtt_graphviz_dotfile_is_received",
+    "mqtt_imagetopic": "your_mqtt_topic_where_you_want_the_image_to_be_sent_to",
     "mqtt_username": "your_mqtt_username", 
     "mqtt_host": "your_mqtt_host", 
     "mqtt_password": "your_mqttpassword",
     "mqtt_port": "1883"
   },
   "schema": {
-    "mqtt_topic": "str",
+    "mqtt_dottopic": "str",
+    "mqtt_imagetopic": "str",
     "mqtt_username": "str",
     "mqtt_host": "str",
     "mqtt_password": "str",
