@@ -11,7 +11,7 @@ MQTT_TOPIC=$(jq --raw-output ".mqtt_topic" $CONFIG_PATH)
 MQTT_PORT=$(jq --raw-output ".mqtt_port" $CONFIG_PATH)
 
 
-echo "[INFO] Using Data $MQTT_USERNAME@$MQTT_HOST and topic $MQTT_TOPIC"
+echo "[INFO] Using Data $MQTT_USERNAME@$MQTT_HOST using port $MQTT_PORT and topic $MQTT_TOPIC"
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
 # LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
