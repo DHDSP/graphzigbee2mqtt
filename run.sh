@@ -4,7 +4,7 @@ set -e
 CONFIG_PATH=/data/options.json
 #MARIADB_DATA=/data/databases
 
-echo "[INFO] Using Data $MQTT_USERNAME@$MQTT_HOST for Subject $MQTTPATH_DOTFILE"
+echo "[INFO] Using Data $MQTT_USERNAME@$MQTT_HOST and topic $MQTTPATH_DOTFILE"
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
 LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
