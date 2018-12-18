@@ -7,9 +7,9 @@
   "startup": "before",
   "boot": "auto",
   "options": {
-    "mqtt_topitopic": "your_mqtttopic",
-    "mqtt_username": "your_mqttusername", 
-    "mqtt_host": "your_mqtthost", 
+    "mqtt_topic": "your_mqtt_topic",
+    "mqtt_username": "your_mqtt_username", 
+    "mqtt_host": "your_mqtt_host", 
     "mqtt_password": "your_mqttpassword",
     "mqtt_port": "1883"
   },
