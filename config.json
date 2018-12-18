@@ -7,8 +7,8 @@
   "startup": "before",
   "boot": "auto",
   "options": {
-    "mqtt_dottopic": "your_mqtt_topic_where_the_zigbee2mqtt_graphviz_dotfile_is_received",
-    "mqtt_imagetopic": "your_mqtt_topic_where_you_want_the_image_to_be_sent_to",
+    "mqtt_dottopic": "topic_to_receive_dotfile",
+    "mqtt_imagetopic": "topic_to_send_png_to",
     "mqtt_username": "your_mqtt_username", 
     "mqtt_host": "your_mqtt_host", 
     "mqtt_password": "your_mqttpassword",
