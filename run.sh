@@ -22,6 +22,10 @@ echo "Now connecing to mqtt server with the following command:"
 echo "mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > test.png"
 echo "waiting for a dotfile to arrive..."
 
+mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > test.png
+
+echo "received dotfile and generated .png"
+
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
 # LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
 # RIGHTS=$(jq --raw-output '.rights | length' $CONFIG_PATH)
