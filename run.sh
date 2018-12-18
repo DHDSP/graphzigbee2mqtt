@@ -2,7 +2,6 @@
 set -e
 
 CONFIG_PATH=/data/options.json
-#MARIADB_DATA=/data/databases
 
 MQTT_USERNAME=$(jq --raw-output ".mqtt_username" $CONFIG_PATH)
 MQTT_PASSWORD=$(jq --raw-output ".mqtt_password" $CONFIG_PATH)
@@ -12,19 +11,28 @@ MQTT_IMAGETOPIC=$(jq --raw-output ".mqtt_imagetopic" $CONFIG_PATH)
 MQTT_PORT=$(jq --raw-output ".mqtt_port" $CONFIG_PATH)
 
 
+echo "------------------------------------------------------------------------------------"
 echo "[INFO] Using mqtt username: $MQTT_USERNAME"
 echo "[INFO] Using mqtt host: $MQTT_HOST"
 echo "[INFO] Using mqtt serverport: $MQTT_PORT"
 echo "[INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC"
 echo "[INFO] Using mqtt topic for sending the .png image: $MQTT_IMAGETOPIC"
 echo "------------------------------------------------------------------------------------"
+echo ""
 echo "Now connecing to mqtt server with the following command:"
 echo "mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P notdisclosed -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > test.png"
+echo ""
 echo "waiting for a dotfile to arrive..."
 
-mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > test.png
+mosquitto_sub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -C 1 -t $MQTT_DOTTOPIC | circo -Tpng > latest_network_scan.png
 
 echo "received dotfile and generated .png"
+
+echo "Now sending the .png with command:"
+echo "mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png"
+
+mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png
+
 
 # DATABASES=$(jq --raw-output ".databases[]" $CONFIG_PATH)
 # LOGINS=$(jq --raw-output '.logins | length' $CONFIG_PATH)
@@ -88,4 +96,4 @@ echo "received dotfile and generated .png"
 #}
 #trap "stop_mariadb" SIGTERM SIGHUP
 
-wait "$MARIADB_PID"
+#wait "$MARIADB_PID"
