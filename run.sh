@@ -12,7 +12,7 @@ MQTT_PORT=$(jq --raw-output ".mqtt_port" $CONFIG_PATH)
 
 
 echo "------------------------------------------------------------------------------------"
-echo "[INFO] Using mqtt username: $MQTT_USERNAME"
+echo "[INFO] Using mqtt username:\033[32m $MQTT_USERNAME\033[0m"
 echo "[INFO] Using mqtt host: $MQTT_HOST"
 echo "[INFO] Using mqtt serverport: $MQTT_PORT"
 echo "[INFO] Using mqtt topic for receiving the graphviz dotfile: $MQTT_DOTTOPIC"
@@ -38,7 +38,7 @@ echo "Now sending the .png with command:"
 echo "mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png"
 
 mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -P $MQTT_PASSWORD -u $MQTT_USERNAME -t $MQTT_IMAGETOPIC -f latest_network_scan.png
-
+echo "------------------------------------------------------------------------------------"
 
 done
 
